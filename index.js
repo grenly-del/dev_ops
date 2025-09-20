@@ -4,7 +4,10 @@ const { Client, LocalAuth } = require("whatsapp-web.js");
 
 // Inisialisasi WhatsApp client dengan LocalAuth
 const client = new Client({
-  authStrategy: new LocalAuth({ clientId: "bmkg-bot" }) // folder .wwebjs_auth
+  authStrategy: new LocalAuth({ clientId: "bmkg-bot" }), // folder .wwebjs_auth
+  puppeteer: {
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+  }
 });
 
 // QR hanya muncul sekali saat pertama kali login
