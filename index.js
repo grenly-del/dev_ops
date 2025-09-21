@@ -69,7 +69,6 @@ const getData = async () => {
 
     const data = res.data.Infogempa.gempa;
     const hasil = data.slice(0, 5);
-    console.log(hasil);
     for (const gempa of hasil) {
       let message = "";
 
