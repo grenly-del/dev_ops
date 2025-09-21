@@ -36,8 +36,22 @@ function isToday(dateStr) {
   const end = new Date();
   end.setHours(23, 59, 59, 999);
 
-  return d >= start && d <= end;
+  return d >= start && d <= end ? true : false;
 }
+
+function formatDay() {
+  const moment = require("moment-timezone");
+  const isoTime = new Date();
+
+  // Convert ke WIB (Asia/Jakarta)
+  const result = moment(isoTime)
+    .tz("Asia/Jakarta")
+    .format("ddd MMM DD HH:mm:ss [WIB] YYYY");
+
+  return result
+
+}
+
 
 // fungsi kirim pesan
 const sendMessage = (message, no) => {
@@ -55,7 +69,7 @@ const getData = async () => {
 
     const data = res.data.Infogempa.gempa;
     const hasil = data.slice(0, 5);
-
+    console.log(hasil);
     for (const gempa of hasil) {
       let message = "";
 
@@ -74,6 +88,16 @@ const getData = async () => {
 4. Magnitudo: ${gempa.Magnitude}
 5. Koordinat: https://www.google.com/maps?q=${gempa.Coordinates}`;
       }
+
+      console.log(`
+=== BMKG Earthquake Report ${formatDay()} ===
+Tanggal : ${gempa.Tanggal}
+Jam : ${gempa.Jam}
+Magnitudo : ${gempa.Magnitude}
+Lokasi : ${gempa.Dirasakan}
+Koordinat : ${gempa.Coordinates}
+Kedalaman : ${gempa.Kedalaman}
+Dirasakan : ${gempa.Dirasakan}`)
 
       await sendMessage(message, "6282187199940"); // ganti nomor WA
     }
