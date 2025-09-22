@@ -85,6 +85,7 @@ const getData = async () => {
     Kedalaman : ${gempaTerbaru.Kedalaman}
     Dirasakan : ${gempaTerbaru.Dirasakan}`;
 
+      console.log(message)
       await sendMessage(message, "6281247971845");
       console.log("✅ Pesan pertama kali dikirim ke WhatsApp");
     } else {
@@ -104,6 +105,8 @@ const getData = async () => {
     Koordinat : https://www.google.com/maps?q=${gempaTerbaru.Coordinates}
     Kedalaman : ${gempaTerbaru.Kedalaman}
     Dirasakan : ${gempaTerbaru.Dirasakan}`;
+
+        console.log(message)
 
         await sendMessage(message, "6281247971845");
         console.log("✅ Pesan update dikirim ke WhatsApp");
