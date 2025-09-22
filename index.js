@@ -88,7 +88,7 @@ const getData = async () => {
     Dirasakan : ${gempaTerbaru.Dirasakan}`;
 
       console.log(message)
-      await sendMessage(message, "6281247971845");
+      await sendMessage(message, "6282187199940");
       console.log("✅ Pesan pertama kali dikirim ke WhatsApp");
     } else {
       // Jika sudah ada data → bandingkan DateTime
@@ -111,7 +111,7 @@ const getData = async () => {
 
         console.log(message)
 
-        await sendMessage(message, "6281247971845");
+        await sendMessage(message, "6282187199940");
         console.log("✅ Pesan update dikirim ke WhatsApp");
       } else {
         console.log("ℹ️ Tidak ada data gempa baru. Tidak kirim pesan.");
