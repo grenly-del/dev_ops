@@ -31,6 +31,7 @@ client.on("ready", async () => {
   console.log("✅ WhatsApp client siap!");
   await getData();
   console.log("✅ Program selesai.");
+  await client.destroy(); 
   process.exit(0); // biar script berhenti, Jenkins bisa panggil lagi
 });
 
