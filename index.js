@@ -1,6 +1,8 @@
 const axios = require("axios");
 const qrcode = require("qrcode-terminal");
 const { app } = require("./firebase");
+const path = require('path')
+const fs = require('fs')
 const {
   getFirestore,
   doc,
@@ -131,6 +133,17 @@ Dirasakan : ${gempaTerbaru.Dirasakan}
     }
 
     // Simpan di file
+    let file_name = 'earthquake.log'
+    if(!fs.existsSync(file_name)){
+      console.log('belum ada');
+      fs.writeFileSync(file_name, message + '\n', {
+        encoding: 'utf-8'
+      })
+    }else {
+      fs.appendFileSync(file_name, message + '\n', {
+        encoding: 'utf-8'
+      })
+    }
 
   } catch (err) {
     console.error("❌ Gagal ambil data BMKG:", err.message);
