@@ -115,6 +115,7 @@ const getData = async () => {
         console.log("✅ Pesan update dikirim ke WhatsApp");
       } else {
         console.log("ℹ️ Tidak ada data gempa baru. Tidak kirim pesan.");
+        console.log(message)
       }
     }
 
