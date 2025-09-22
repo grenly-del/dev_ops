@@ -60,7 +60,7 @@ const getData = async () => {
     // Ambil data BMKG
     const res = await axios.get(
       "https://data.bmkg.go.id/DataMKG/TEWS/gempadirasakan.json",
-      { headers: { "Content-Type": "application/json" } }
+      { headers: { "Content-Type": "application/json" }, family: 4 }
     );
 
     const data = res.data.Infogempa.gempa;
