@@ -38,12 +38,13 @@ client.on("ready", async () => {
 client.initialize();
 
 // format WIB
-function formatDay() {
-  const isoTime = new Date();
+function formatDay(date_time) {
+  const isoTime = new Date(date_time);
   return moment(isoTime)
     .tz("Asia/Jakarta")
     .format("ddd MMM DD HH:mm:ss [WIB] YYYY");
 }
+
 
 // fungsi kirim pesan
 const sendMessage = (message, no) => {
@@ -68,7 +69,7 @@ const getData = async () => {
     // Ambil data terakhir dari Firestore
     const docRef = doc(db, "gempa", "latest");
     const docSnap = await getDoc(docRef);
-
+    let message = ''
     if (!docSnap.exists()) {
       // Jika belum ada data di Firestore → simpan data terbaru dari BMKG
       await setDoc(docRef, gempaTerbaru);
@@ -76,7 +77,8 @@ const getData = async () => {
       console.log("🆕 Data pertama kali disimpan ke Firebase:", gempaTerbaru.DateTime);
 
       // Kirim pesan juga
-      const message = `⚠️ [BMKG] Update Gempa
+      message = `⚠️ 
+    === BMKG Earthquake Report ${formatDay(gempaTerbaru.DateTime)} ===
     Tanggal : ${gempaTerbaru.Tanggal}
     Jam : ${gempaTerbaru.Jam}
     Magnitudo : ${gempaTerbaru.Magnitude}
@@ -97,7 +99,8 @@ const getData = async () => {
 
         console.log("🆕 Data terbaru disimpan ke Firebase:", gempaTerbaru.DateTime);
 
-        const message = `⚠️ [BMKG] Update Gempa
+        message = `
+    === BMKG Earthquake Report ${formatDay(gempaTerbaru.DateTime)} ===
     Tanggal : ${gempaTerbaru.Tanggal}
     Jam : ${gempaTerbaru.Jam}
     Magnitudo : ${gempaTerbaru.Magnitude}
@@ -114,6 +117,9 @@ const getData = async () => {
         console.log("ℹ️ Tidak ada data gempa baru. Tidak kirim pesan.");
       }
     }
+
+    // Simpan di file
+
   } catch (err) {
     console.error("❌ Gagal ambil data BMKG:", err.message);
   }
