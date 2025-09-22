@@ -114,6 +114,17 @@ const getData = async () => {
         await sendMessage(message, "6282187199940");
         console.log("✅ Pesan update dikirim ke WhatsApp");
       } else {
+        message = `
+=== BMKG Earthquake Report ${formatDay(gempaTerbaru.DateTime)} ===
+Tanggal : ${gempaTerbaru.Tanggal}
+Jam : ${gempaTerbaru.Jam}
+Magnitudo : ${gempaTerbaru.Magnitude}
+Lokasi : ${gempaTerbaru.Dirasakan}
+Koordinat : https://www.google.com/maps?q=${gempaTerbaru.Coordinates}
+Kedalaman : ${gempaTerbaru.Kedalaman}
+Dirasakan : ${gempaTerbaru.Dirasakan} 
+
+`;
         console.log("ℹ️ Tidak ada data gempa baru. Tidak kirim pesan.");
         console.log(message)
       }
