@@ -146,6 +146,7 @@ Dirasakan : ${gempaTerbaru.Dirasakan}
     }
 
   } catch (err) {
+    console.log(err);
     console.error("❌ Gagal ambil data BMKG:", err.message);
   }
 };
