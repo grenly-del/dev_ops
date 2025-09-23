@@ -4,5 +4,6 @@
 .wwebjs_cache
 Jenkinsfile
 
-
+build.js
+dist/
 earthquake.log
